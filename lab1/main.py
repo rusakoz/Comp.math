@@ -72,7 +72,7 @@ class NeuralNetwork():
     '''
     
     def __init__(self):
-        self.count_hidden_neurons = 300
+        self.count_hidden_neurons = 50
         self.hidden_neurons = [HiddenLayerNeuron(generate_weights_1_2(2), generate_bias()) for i in range(self.count_hidden_neurons)]
         self.output_neuron = OutputNeuron(generate_weights_2_3(self.count_hidden_neurons))
     
@@ -86,9 +86,9 @@ class NeuralNetwork():
         return self.output_network([sigmoid(m) for m in(self.outputs_hidden_layer(inputs))])
     
     def train(self, data_x, y_trues):
-        epochs = 2000
-        alpha = 0.0005
-        delta = 0.000000001
+        epochs = 6000
+        alpha = 0.015
+        delta = 0.005
         deviation = 0
         what_is = 0
         plt.ion()
@@ -146,12 +146,19 @@ class NeuralNetwork():
         prange = 10
         step = 0.1
 
-        # Парабола
-        data_x = np.random.random(100)*2*10-10+0
-        y_trues = [data_x[i] ** 2 for i in range(len(data_x))]
-        period = np.arange(pcenter-prange, pcenter+prange, step)
-        plt.plot(period, ApproxFunc(period))
+        # Ломаная
+        data_x = [0, 1, 2, 3, 4, 5, 6]
+        y_trues = [0, 3, -3, 3, -3, 3, -3]
+        plt.plot([0, 1, 2, 3, 4, 5, 6], y_trues)
         plt.show()
+        data_x = np.random.random(100)*1*6
+
+        # # Парабола
+        # data_x = np.random.random(100)*2*10-10+0
+        # y_trues = [data_x[i] ** 2 for i in range(len(data_x))]
+        # period = np.arange(pcenter-prange, pcenter+prange, step)
+        # plt.plot(period, ApproxFunc(period))
+        # plt.show()
 
         # data_x = [-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,3,5,7,8,9,10,11,12,13,14,15,16]
 
@@ -238,11 +245,15 @@ def approximate_sigmoid(x_axis, y_axis):
     #         1.66989391, 4.55245749, -7.22387749, 8.92143599, -4.15472793, -9.94482447,
     #         4.85769995, -8.34741248, 1.21770208, 3.63212024]
 
-    # Парабола
-    # data_x = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-    data_x = [-10, -2, 0, 2, 10]
-    # data_x = np.random.random(100)*2*10-10+0
-    y_trues = [data_x[i] ** 2 for i in range(len(data_x))]
+    # Ломаная
+    data_x = [0, 1, 2, 3, 4, 5, 6]
+    y_trues = [0, 3, -3, 3, -3, 3, -3]
+
+    # # Парабола
+    # # data_x = [-10, -9, -8, -7, -6, -5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    # data_x = [-10, -2, 0, 2, 10]
+    # # data_x = np.random.random(100)*2*10-10+0
+    # y_trues = [data_x[i] ** 2 for i in range(len(data_x))]
 
     # # Синус
     # # data_x = [-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,3,5,7,8,9,10,11,12,13,14,15,16]
