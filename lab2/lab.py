@@ -64,7 +64,7 @@ class Result:
         vectox_x_after = [0] * n
         for m in range(10000):
             for i in range(n):
-                vectox_x_after[i] = (matrix[i][n] - sum(matrix[i][j] * vectox_x_before[j] for j in range(n) if j != i)) / matrix[i][i]
+                vectox_x_after[i] = (matrix[i][n] - sum(matrix[i][j] * vectox_x_after[j] for j in range(n) if j != i)) / matrix[i][i]
             max_err = max(abs(vectox_x_after[n] - vectox_x_before[n]) for n in range(n))
             if max_err <= epsilon:
                 return vectox_x_after
